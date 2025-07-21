@@ -10,7 +10,7 @@ vim.opt.smartindent = true
 vim.opt.incsearch = true
 
 vim.opt.scrolloff = 8
-vim.opt.signcolum = "yes"
+vim.opt.signcolumn = "yes"
 vim.opt.isfname:append	("@-@")
 
 
