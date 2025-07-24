@@ -1,22 +1,43 @@
 return{
-	"neovim/nvim-lspconfig",
-	event = { "BufReadPre", "BufNewFile" },
-	config = function()
+    "neovim/nvim-lspconfig",
+    dependencies = {
+        'saghen/blink.cmp',
+        {
+            "folke/lazydev.nvim",
+            fr = "lua",
+            opts = {
+                library = {
+                    {path = "${3rd}/luv/library", words = { "vim%.uv"} },
+                },
+            },
+        },
+    },
+    config = function()
 
-		local lspconfig = require("lspconfig")
+        local capabilities = require('blink.cmp').get_lsp_capabilities()
 
-		lspconfig.clangd.setup({})
-		lspconfig.ts_ls.setup({})
-		lspconfig.sqls.setup({})
-		lspconfig.pyright.setup({})
-		lspconfig.phpactor.setup({})
-		lspconfig.jdtls.setup({})
-		lspconfig.html.setup({})
-		lspconfig.cssls.setup({})
-		lspconfig.lua_ls.setup({})
+        local lspconfig = require("lspconfig")
 
-		vim.lsp.enable({
-			"server"
+        lspconfig.clangd.setup({capabilities = capabilities})
+        lspconfig.ts_ls.setup({capabilities = capabilities})
+        lspconfig.sqls.setup({capabilities = capabilities})
+        lspconfig.pyright.setup({capabilities = capabilities})
+        lspconfig.phpactor.setup({capabilities = capabilities})
+        lspconfig.jdtls.setup({capabilities = capabilities})
+        lspconfig.html.setup({capabilities = capabilities})
+        lspconfig.cssls.setup({capabilities = capabilities})
+        lspconfig.lua_ls.setup({capabilities = capabilities})
+
+        vim.lsp.enable({
+            "clangd",
+            "ts_ls",
+            "sqls",
+            "pyright",
+            "phpactor",
+            "jdtls",
+            "html",
+            "cssls",
+            "lua_ls"
 		})
 
 		vim.diagnostic.config({
