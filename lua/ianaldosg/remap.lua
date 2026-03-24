@@ -9,4 +9,4 @@ vim.keymap.set("n", "<C-u>", "C-uzz")
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 vim.keymap.set("n", "<leader>s",":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>")
-
+vim.keymap.set('n', '<leader>rr', ':w<CR>:!g++ -std=c++23 -O2 % -o sol && ./sol<CR>', { desc = 'Run C++ Codeforces style' })

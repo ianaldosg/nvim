@@ -18,7 +18,15 @@ return{
 
         local lspconfig = require("lspconfig")
 
-        lspconfig.clangd.setup({capabilities = capabilities})
+        lspconfig.clangd.setup({
+            cmd = {
+                "clangd",
+                "--background-index",
+                "--clang-tidy",
+                "--header-insertion=never",
+                "--query-driver=/usr/bin/g++",
+            },
+        })
         lspconfig.ts_ls.setup({capabilities = capabilities})
         lspconfig.sqls.setup({capabilities = capabilities})
         lspconfig.pyright.setup({capabilities = capabilities})
