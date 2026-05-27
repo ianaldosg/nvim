@@ -8,6 +8,7 @@ return {
       opts = {
         library = {
           { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+          { path = "/usr/share/hypr/stubs/", words = { "hl%."} },
         },
       },
     },
@@ -43,9 +44,18 @@ return {
     }
 
     for _, server in ipairs(servers) do
-      vim.lsp.config(server, {
-        capabilities = capabilities,
-      })
+        local config = { capabilities = capabilities}
+
+        if server == "lua_ls" then
+            config.settings = {
+                Lua = {
+                    diagnostics = {
+                        globals = {"hl", "vim" }
+                    }
+                }
+            }
+        end
+        vim.lsp.config(server, config)
     end
 
     -- ========================
