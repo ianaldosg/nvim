@@ -1,0 +1,8 @@
+# Arquivos de estado e cache do Neovim
+.netrwhist
+shada/
+*.swp
+*.swo
+*.tmp
+undo/
+
